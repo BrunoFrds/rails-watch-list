@@ -1,3 +1,13 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <p class="navbar-brand"><i class="fa-solid fa-film"></i></p>
+    <p class="">
+      <%= link_to "My Lists", lists_path(), class: "text-decoration-none dark" %>
+      <%= link_to "New List", new_list_path(), class: "text-decoration-none dark" %>
+    </p>
+  </div>
+</nav>
+
 <h1><%= @list.name %></h1>
 
 <% @list.bookmarks.each do |bookmark| %>
@@ -5,7 +15,10 @@
     <%= bookmark.comment %>
   </div>
   <div>
-  <%= bookmark.movie.title %>
+  <h2><%= bookmark.movie.title %></h2>
+  <p><%= bookmark.movie.overview %></p>
+  <img src="<%= bookmark.movie.poster_url %>" alt="Movie poster">
+  <p><%= bookmark.movie.rating %>/10</p>
   </div>
   <%= link_to "Delete",
   list_bookmark_path(@list, bookmark),
@@ -13,5 +26,6 @@
   %>
 <% end %>
 
-
 <%= link_to "Add bookmark", new_list_bookmark_path(@list)%>
+
+<%= link_to "Back to lists", lists_path() %>
